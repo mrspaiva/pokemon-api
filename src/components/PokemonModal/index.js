@@ -4,15 +4,28 @@ import { FiX } from 'react-icons/fi'
 import {
   ViewOverlay,
   ViewContainer,
-  InfoContent,
+  PokemonPresentation,
   Image,
   Name,
+  InfoSection,
+  InfoContent,
   InfoTitle,
   InfoValue,
   CloseButton,
 } from './styles'
 
-function PokemonModal({ isOpen, image, name, type, onClickClose }) {
+function PokemonModal({
+  isOpen,
+  image,
+  name,
+  type,
+  baseExperience,
+  weight,
+  height,
+  ability,
+  move,
+  onClickClose,
+}) {
   if (!isOpen) {
     return null
   }
@@ -21,11 +34,41 @@ function PokemonModal({ isOpen, image, name, type, onClickClose }) {
     <ViewOverlay>
       <ViewContainer>
         <Image src={image} />
-        <InfoContent>
+        <PokemonPresentation>
           <Name>{name}</Name>
-          <InfoTitle>Type</InfoTitle>
-          <InfoValue>{type}</InfoValue>
-        </InfoContent>
+
+          <InfoSection>
+            <InfoContent>
+              <InfoTitle>Type</InfoTitle>
+              <InfoValue>{type}</InfoValue>
+            </InfoContent>
+
+            <InfoContent>
+              <InfoTitle>Base experience</InfoTitle>
+              <InfoValue>{baseExperience}</InfoValue>
+            </InfoContent>
+
+            <InfoContent>
+              <InfoTitle>Weight</InfoTitle>
+              <InfoValue>{weight}</InfoValue>
+            </InfoContent>
+
+            <InfoContent>
+              <InfoTitle>Height</InfoTitle>
+              <InfoValue>{height}</InfoValue>
+            </InfoContent>
+
+            <InfoContent>
+              <InfoTitle>Ability</InfoTitle>
+              <InfoValue>{ability}</InfoValue>
+            </InfoContent>
+
+            <InfoContent>
+              <InfoTitle>Move</InfoTitle>
+              <InfoValue>{move}</InfoValue>
+            </InfoContent>
+          </InfoSection>
+        </PokemonPresentation>
 
         <CloseButton onClick={onClickClose}>
           <FiX size={24} color='#000' />

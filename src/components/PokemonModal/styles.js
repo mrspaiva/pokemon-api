@@ -24,20 +24,36 @@ export const ViewContainer = styled.div`
   justify-content: space-between;
 `
 
-export const InfoContent = styled.div``
-
 export const Image = styled.img`
   width: 12rem;
   height: 12rem;
   display: flex;
   align-self: center;
 `
-export const Name = styled.h1`
-  font-weight: 700;
-  margin-bottom: 1.2rem;
+
+export const PokemonPresentation = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
-export const InfoTitle = styled.h3``
+export const Name = styled.h1`
+  font-weight: 700;
+  font-size: 2.5rem;
+`
+
+export const InfoSection = styled.div`
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  grid-column-gap: 1rem;
+`
+
+export const InfoContent = styled.div``
+
+export const InfoTitle = styled.h3`
+  font-weight: 700;
+`
 
 export const InfoValue = styled.span``
 
