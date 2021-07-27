@@ -1,3 +1,6 @@
+const changeLimit = 15
+const changeOffset = 0
+
 export function getPokemon({ url }) {
   return new Promise((resolve) => {
     fetch(url)
@@ -10,7 +13,7 @@ export function getPokemon({ url }) {
 
 export async function getAllPokemon(url) {
   return new Promise((resolve) => {
-    fetch(url)
+    fetch(`${url}/?limit=${changeLimit}&offset=${changeOffset}`)
       .then((res) => res.json())
       .then((data) => {
         resolve(data)
