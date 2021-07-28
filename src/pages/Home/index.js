@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react'
 import Spinner from 'react-spinkit'
 import Search from '../../components/SearchBar'
