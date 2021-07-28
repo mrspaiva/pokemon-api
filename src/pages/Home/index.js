@@ -48,7 +48,7 @@ function Home() {
         fetchData()
       }, 1500)
     } catch (error) {
-      console.loge(error)
+      console.log(error)
     }
   }, [])
 
