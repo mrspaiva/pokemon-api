@@ -9,10 +9,10 @@ export const Container = styled.div`
   background-color: #d4d4d4;
 `
 
-export const Title = styled.h1`
-  font-size: 3rem;
-  margin-top: 3rem;
-  margin-bottom: 4rem;
+export const LogoImage = styled.img`
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  width: 20rem;
 `
 
 export const CardSection = styled.div`
@@ -22,6 +22,7 @@ export const CardSection = styled.div`
   overflow: hidden;
   padding: 1rem 0;
   margin-bottom: 1.4rem;
+  margin-top: 2rem;
 `
 
 export const ButtonSection = styled.div`

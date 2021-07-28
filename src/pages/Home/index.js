@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Spinner from 'react-spinkit'
+import Search from '../../components/SearchBar'
 import Card from '../../components/PokemonCard'
 import Modal from '../../components/PokemonModal'
 import Button from '../../components/ButtonNavigation'
+import Logo from '../../assets/logo.svg'
 import { getAllPokemon, getPokemon } from '../../services/PokemonPromises'
 import {
   Container,
-  Title,
+  LogoImage,
   CardSection,
   ButtonSection,
   SpinnerSection,
@@ -18,8 +20,9 @@ function Home() {
   const [loading, setLoading] = useState(true)
   const [nextUrl, setNextUrl] = useState('')
   const [prevUrl, setPrevUrl] = useState('')
+  const [initialData, setInitialData] = useState([])
 
-  const initialURL = 'https://pokeapi.co/api/v2/pokemon'
+  const api = 'https://pokeapi.co/api/v2/pokemon'
 
   const loadPokemon = async (data) => {
     const pokemonData = await Promise.all(
@@ -28,20 +31,25 @@ function Home() {
         return pokemonRecord
       })
     )
+    setInitialData(pokemonData)
     setPokemonData(pokemonData)
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      async function fetchData() {
-        const data = await getAllPokemon(initialURL)
-        setNextUrl(data.next)
-        setPrevUrl(data.previous)
-        await loadPokemon(data.results)
-        setLoading(false)
-      }
-      fetchData()
-    }, 3000)
+    try {
+      setTimeout(() => {
+        async function fetchData() {
+          const data = await getAllPokemon(api)
+          setNextUrl(data.next)
+          setPrevUrl(data.previous)
+          await loadPokemon(data.results)
+          setLoading(false)
+        }
+        fetchData()
+      }, 1500)
+    } catch (error) {
+      console.loge(error)
+    }
   }, [])
 
   const next = async () => {
@@ -71,13 +79,27 @@ function Home() {
     )
   }
 
+  const handleChange = ({ target }) => {
+    if (!target.value) {
+      setPokemonData(initialData)
+      return
+    }
+
+    const filterPokemon = pokemonData.filter(({ name }) =>
+      name.includes(target.value)
+    )
+    setPokemonData(filterPokemon)
+  }
+
   return (
     <Container>
       {loading ? (
         loadingReturn()
       ) : (
         <>
-          <Title>Pokedex</Title>
+          <LogoImage src={Logo} />
+
+          <Search onChange={handleChange} />
 
           <CardSection>
             {pokemonData.map((poke) => (
